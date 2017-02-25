@@ -10,17 +10,17 @@ export default new Router({
   routes: [
     {
       path: '/about',
-      name: 'index',
+      name: 'about',
       component: About
     },
     {
       path: '/get',
-      name: 'index',
+      name: 'get',
       component: Get
     },
     {
       path: '/room/:id',
-      name: 'index',
+      name: 'room',
       component: Room
     },
   ]
