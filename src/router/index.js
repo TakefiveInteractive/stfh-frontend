@@ -11,6 +11,7 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
+      alias: '/',
       component: About
     },
     {
@@ -22,6 +23,10 @@ export default new Router({
       path: '/room/:id',
       name: 'room',
       component: Room
+    },
+    {
+      path: '/room',
+      redirect: '/room/undefined'
     },
   ]
 })

@@ -9,32 +9,34 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="#/about">
             STFH &nbsp;&nbsp;
             <i>Stream the Fucking Hack</i>
           </a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li :class="{'active' : $route.path == '/get'}">
+            <li :class="{'active' : isRoute('get')}">
               <a href="#/get">
                 Get
               </a>
             </li>
-            <li :class="{'active' : $route.path == '/about'}">
+            <li :class="{'active' : isRoute('about')}">
               <a href="#/about">
                 About
               </a>
             </li>
-            <li :class="{'active' : $route.path == '/room'}">
+            <li :class="{'active' : isRoute('room')}">
               <a href="#/room">
                 Room&nbsp;&nbsp;
-                <code>0123</code>
+                <code v-if="isRoute('room')">
+                  {{ $route.params.id }}
+                </code>
               </a>
             </li>
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" v-on:submit="handleGotoSubmit">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="goto">
+                <input type="text" class="form-control" placeholder="goto" v-model="idInput">
               </div>
             </form>
           </ul>
@@ -49,7 +51,19 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  methods : {
+    'handleGotoSubmit' : function (e) {
+      this.$router.push({ name: 'room', params: { 'id': this.idInput }})
+      this.idInput = ''
+    }, 
+    'isRoute' : function (name) {
+      return this.$route.name == name
+    }
+  },
+  data : function () {
+    return { idInput : '' }
+  }
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Room</h1>
+    <h1 v-if="$route.params.id == 'undefined'">Go get a room</h1>
   </div>
 </template>
 
@@ -14,5 +14,7 @@ export default {
 </script>
 
 <style scoped>
-
+h1 {
+  text-align: center;
+}
 </style>
