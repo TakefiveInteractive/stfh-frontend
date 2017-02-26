@@ -7,17 +7,17 @@
       <i class="glyphicon glyphicon-menu-up"></i>
     </h1>
   </div>
-    <div class="col-sm-12 left-big" v-else>
-      <section class="big">
-        <editor :editorMounted="editorMounted"></editor>
-      </section>
-      <section>
-        <file-tree :data="treeData"></file-tree>
-      </section>
-      <section>
-        
-      </section>
-    </div>
+  <div class="col-sm-12 left-big" v-else>
+    <section class="big">
+      <editor :editorMounted="editorMounted"></editor>
+    </section>
+    <section>
+      <file-tree :data="treeData"></file-tree>
+    </section>
+    <section>
+
+    </section>
+  </div>
 </template>
 
 <script>
