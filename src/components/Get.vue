@@ -2,7 +2,7 @@
   <div class="col-md-8 col-md-offset-2">
     <h1>Stream Your Hack in TWO steps</h1>
       <ol>
-        <li><i class="glyphicon glyphicon-download-alt"></i><a href="">get</a> the plugin</li>
+        <li><i class="glyphicon glyphicon-download-alt"></i><a href="https://atom.io/packages/stfh-atom">get</a> the plugin</li>
         <li><i class="glyphicon glyphicon-link"></i>tap this this that and get an unique url</li>
       </ol>
       <p>
