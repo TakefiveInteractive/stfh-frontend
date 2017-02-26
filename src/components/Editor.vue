@@ -9,7 +9,7 @@ import 'brace/theme/monokai';
 
 export default {
   name: 'editor',
-  props: ['editorLang', 'editorCode', 'editorMounted'],
+  props: ['editorLang', 'editorContent', 'editorMounted'],
   data () {
     return {
       editor : null
@@ -19,6 +19,7 @@ export default {
     editorContent : function(content) {
       this.editor.setValue(content)
       this.editor.clearSelection()
+      
     }
   },
   mounted () {
@@ -41,10 +42,10 @@ export default {
       // 90vh
     },
     onInsert: function({content, pos}) {
-      debugger
+      
     },
     onDelete: function({selection}) {
-      debugger
+      
     }
   }
 }
