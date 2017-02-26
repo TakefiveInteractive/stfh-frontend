@@ -2,6 +2,8 @@
   <div class="hello">
     <h1>Stream Your Hack</h1>
     <p>by kind guys from Takefive</p>
+
+    <p>Support us on DevPost</p>
   </div>
 </template>
 
