@@ -15,7 +15,7 @@
       <file-tree :data="treeData"></file-tree>
     </section>
     <section>
-
+      <videoPlayer></videoPlayer>
     </section>
   </div>
 </template>
@@ -23,6 +23,8 @@
 <script>
 import Editor from './Editor.vue'
 import FileTree from './FileTree.vue'
+import VideoPlayer from './VideoPlayer.vue'
+
 
 
 export default {
@@ -60,7 +62,7 @@ export default {
     }
   },
   components: {
-    Editor, FileTree
+    Editor, FileTree, VideoPlayer
   },
   methods: {
     editorMounted: function() {

@@ -6,9 +6,13 @@
 
 <script>
 export default {
-  name: 'video',
+  name: 'videoPlayer',
+  components : {  },
   data () {
     return {}
+  },
+  methods: {
+
   }
 }
 </script>
