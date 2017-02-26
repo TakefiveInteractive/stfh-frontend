@@ -27,10 +27,10 @@
               </a>
             </li>
             <li :class="{'active' : isRoute('room')}">
-              <a href="#/room">
+              <a :href="`#/room/${lastRoom}`">
                 Room&nbsp;&nbsp;
-                <code v-if="isRoute('room')">
-                  {{ $route.params.id }}
+                <code v-if="isRoute('room') || lastRoom.length">
+                  {{ lastRoom }}
                 </code>
               </a>
             </li>
@@ -52,17 +52,27 @@
 <script>
 export default {
   name: 'app',
+  created : function () {
+    if (this.$route.name == 'room')
+      this.lastRoom = this.$route.path.replace('/room/', '')
+  },
   methods : {
     'handleGotoSubmit' : function (e) {
-      this.$router.push({ name: 'room', params: { 'id': this.idInput }})
+      this.$router.push({ name: 'room', params: {
+        'id': this.idInput
+      }})
+      this.lastRoom = this.idInput
       this.idInput = ''
     }, 
     'isRoute' : function (name) {
       return this.$route.name == name
-    }
+    },
   },
   data : function () {
-    return { idInput : '' }
+    return {
+      idInput : '' ,
+      lastRoom : ''
+    }
   }
 }
 </script>
