@@ -21,7 +21,7 @@
       <file-tree :data="treeData"></file-tree>
     </section>
     <section>
-
+      <videoPlayer></videoPlayer>
     </section>
   </div>
 </template>
@@ -29,6 +29,7 @@
 <script>
 import Editor from './Editor.vue'
 import FileTree from './FileTree.vue'
+import VideoPlayer from './VideoPlayer.vue'
 import io from 'socket.io-client'
 
 
@@ -105,7 +106,7 @@ export default {
     }
   },
   components: {
-    Editor, FileTree
+    Editor, FileTree, VideoPlayer
   },
   computed : {
     roomId : function () {
