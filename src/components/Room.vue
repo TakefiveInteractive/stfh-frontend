@@ -14,7 +14,8 @@
       </tt>
       <editor
         :editorContent="editorContent"
-        :editorLang="editorLang"></editor>
+        :editorLang="editorLang">
+      </editor>
     </section>
     <section>
       <file-tree :data="treeData"></file-tree>
@@ -37,11 +38,11 @@ const socketActionCallbacks = {
   'file:content:refresh' : function ({content}) {
     this.editorContent = content
   },
-  'editor:insert' : function ({}) {
-
+  'editor:insert' : function (obj) {
+    this.$broadcast('insert', obj)
   },
   'editor:delete' : function ({selection}) {
-
+    this.$broadcast('delete', obj)
   },
 }
 const socketHandlers = {
