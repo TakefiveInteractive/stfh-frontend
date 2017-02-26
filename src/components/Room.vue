@@ -15,7 +15,7 @@
       <file-tree :data="treeData"></file-tree>
     </section>
     <section>
-
+      <vidcam :roomId="roomId"></vidcam>
     </section>
   </div>
 </template>
@@ -23,6 +23,7 @@
 <script>
 import Editor from './Editor.vue'
 import FileTree from './FileTree.vue'
+import Vidcam from './Vidcam.vue'
 
 
 export default {
@@ -60,7 +61,7 @@ export default {
     }
   },
   components: {
-    Editor, FileTree
+    Editor, FileTree, Vidcam
   },
   methods: {
     editorMounted: function() {

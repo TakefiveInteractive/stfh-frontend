@@ -17,7 +17,7 @@
 import MonacoEditor from 'vue-monaco-editor'
 
 export default {
-  name: 'room',
+  name: 'editor',
   props: ['editorLang', 'editorCode', 'editorMounted'],
   data () {
     return { }
