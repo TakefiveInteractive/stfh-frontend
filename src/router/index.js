@@ -26,7 +26,8 @@ export default new Router({
     },
     {
       path: '/room',
-      redirect: '/room/undefined'
+      redirect: '/room/undefined',
+      canReuse: () => false
     },
   ]
 })
