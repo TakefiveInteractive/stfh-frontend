@@ -2,8 +2,10 @@
 <div class="wrap">
   <ul>
     <tree
+      v-for="d in data"
       class="item"
-      :model="data">
+      :model="d"
+      :selected="false">
     </tree>
   </ul>
 </div>

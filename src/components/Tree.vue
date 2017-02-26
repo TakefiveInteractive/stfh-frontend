@@ -3,6 +3,7 @@
     'file-icon' : !isFolder,
     'folder-icon' : isFolder,
     'open' : isFolder && open,
+    'selected' : model.selected
   }">
     <span
       @click="toggle">
@@ -24,7 +25,8 @@
 export default {
   name: 'tree',
   props: {
-    model: Object
+    model: Object,
+    selected: Boolean,
   },
   data: function () {
     return {
