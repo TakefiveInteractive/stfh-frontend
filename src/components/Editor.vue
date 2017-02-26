@@ -29,15 +29,22 @@ export default {
       editor.setTheme('ace/theme/monokai')
       editor.setReadOnly(true)
 
-
-
       vm.editor = editor
+
+      this.$on('insert', this.onInsert)
+      this.$on('delete', this.onDelete)
     })
   },
   methods: {
     editorHeight: function() {
       return window.outerHeight * 0.9;
       // 90vh
+    },
+    onInsert: function({content, pos}) {
+      debugger
+    },
+    onDelete: function({selection}) {
+      debugger
     }
   }
 }
