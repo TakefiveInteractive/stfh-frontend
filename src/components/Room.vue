@@ -9,10 +9,10 @@
   </div>
     <div class="col-sm-12 left-big" v-else>
       <section class="big">
-        
+        <editor :editorMounted="editorMounted"></editor>
       </section>
       <section>
-        
+        <file-tree :data="treeData"></file-tree>
       </section>
       <section>
         
@@ -21,10 +21,51 @@
 </template>
 
 <script>
+import Editor from './Editor.vue'
+import FileTree from './FileTree.vue'
+
+
 export default {
   name: 'room',
   data () {
-    return {}
+    return {
+      treeData : {
+        name: 'My Tree',
+        children: [
+          { name: 'hello' },
+          { name: 'wat' },
+          {
+            name: 'child folder',
+            children: [
+              {
+                name: 'child folder',
+                children: [
+                  { name: 'hello' },
+                  { name: 'wat' }
+                ]
+              },
+              { name: 'hello' },
+              { name: 'wat' },
+              {
+                name: 'child folder',
+                children: [
+                  { name: 'hello' },
+                  { name: 'wat' }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  components: {
+    Editor, FileTree
+  },
+  methods: {
+    editorMounted: function() {
+
+    },
   }
 }
 </script>
@@ -55,7 +96,7 @@ div.left-big {
     margin-bottom: 5%;
     height: 42.5vh;
 
-    background: #111;
+    background: rgb(33, 37, 43);
     border-radius: 10px;
 
     float: left;
