@@ -23,7 +23,7 @@
             <li :class="{'active' : isRoute('room')}">
               <a :href="`#/room/${lastRoom}`">
                 Room&nbsp;&nbsp;
-                <code v-if="isRoute('room') || lastRoom.length">
+                <code v-if="isRoute('room') && lastRoom.length">
                   {{ lastRoom }}
                 </code>
               </a>
@@ -66,8 +66,8 @@ export default {
   },
   data : function () {
     return {
-      idInput : '' ,
-      lastRoom : ''
+      idInput : '',
+      lastRoom : '',
     }
   }
 }
