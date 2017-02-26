@@ -9,7 +9,12 @@
   </div>
   <div class="col-sm-12 left-big" v-else>
     <section class="big">
-      <editor :editorMounted="editorMounted"></editor>
+      <tt>
+        {{path || 'no file is loaded'}}
+      </tt>
+      <editor
+        :editorContent="editorContent"
+        :editorLang="editorLang"></editor>
     </section>
     <section>
       <file-tree :data="treeData"></file-tree>
@@ -24,17 +29,54 @@
 import Editor from './Editor.vue'
 import FileTree from './FileTree.vue'
 import Vidcam from './Vidcam.vue'
+import io from 'socket.io-client'
+
+
+const s = io('http://stfh.rocks')
+const socketActionCallbacks = {
+  'file:content:refresh' : function ({content}) {
+    this.editorContent = content
+  },
+  'editor:insert' : function ({}) {
+
+  },
+  'editor:delete' : function ({selection}) {
+
+  },
+}
+const socketHandlers = {
+  'file:switch' : function ({path}) {
+    console.log(`got file switch ${path}`)
+    this.path = path
+    this.fire('file:content:refresh', {path, roomId : this.roomId})
+  }
+}
 
 
 export default {
   name: 'room',
   data () {
     return {
-      treeData : {
-        name: 'My Tree',
+      socketActionCallbacks,
+      uid : null,
+      path : null,
+      treeData : [{
+        name: 'build',
+        children: [{}]
+      },{
+        name: 'config',
+        children: [{}]
+      },{
+        name: 'node_modules',
+        children: [{}]
+      }, {
+        name: 'src',
         children: [
-          { name: 'hello' },
-          { name: 'wat' },
+          { name: 'hello.js' },
+          { name: 'wat.ts' },
+          { name: 'wat2.ts' },
+          { name: 'wat3.ts' },
+          { name: 'wat3.css' },
           {
             name: 'child folder',
             children: [
@@ -57,16 +99,49 @@ export default {
             ]
           }
         ]
-      }
+      }],
+      editorContent : '',
+      editorLang : '',
     }
   },
   components: {
     Editor, FileTree, Vidcam
   },
+  computed : {
+    roomId : function () {
+      return this.$route.path.replace('/room/', '')
+    }
+  },
+  mounted () {
+    const vm = this
+    this.$nextTick(function () {
+      this.ready()
+    })
+  },
+  watch: {
+    '$route': 'ready'
+  },
   methods: {
-    editorMounted: function() {
-
+    fire: function(actionName, payload) {
+      console.log(`fire ${actionName}`)
+      const cb = this.socketActionCallbacks[actionName]
+      if (!cb)
+        return
+      s.emit(actionName, payload, cb.bind(this))
     },
+    ready: function() {
+      console.log('loading')
+      const roomId = this.roomId,
+            nickname = 'wobaba',
+            vm = this
+      Object.keys(socketHandlers).forEach(k =>
+        s.on(k, socketHandlers[k].bind(vm)))
+      s.emit('viewer:connect', {
+        roomId, nickname
+      }, function(data) {
+        this.uid = data.userId
+      })
+    }
   }
 }
 </script>
@@ -91,6 +166,8 @@ export default {
 }
 
 div.left-big {
+  font-size: 20px;
+
   section {
     width: 47.5%;
     margin-left: 5%;

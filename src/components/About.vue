@@ -3,7 +3,7 @@
     <h1>Stream Your Hack</h1>
     <p>by kind guys from Takefive</p>
 
-    <p>Support us on DevPost</p>
+    <p>Support us on <a href="https://devpost.com/software/stream-the-f-hack">DevPost</a></p>
   </div>
 </template>
 

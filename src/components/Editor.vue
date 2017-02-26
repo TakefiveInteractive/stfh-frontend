@@ -1,29 +1,38 @@
 <template>
-  <MonacoEditor
-    :height="editorHeight()"
-    :language="editorLang"
-    :code="editorCode"
-    :options="{
-      readOnly : true,
-      fontSize : 18,
-      automaticLayout : true
-    }"
-    @mounted="editorMounted"
-    @codeChange="() => {}"
-    >
-  </MonacoEditor>
+  <div id="editor"></div>
 </template>
 <script>
-import MonacoEditor from 'vue-monaco-editor'
+
+import * as ace from 'brace';
+import 'brace/mode/javascript';
+import 'brace/theme/monokai';
 
 export default {
   name: 'editor',
   props: ['editorLang', 'editorCode', 'editorMounted'],
   data () {
-    return { }
+    return {
+      editor : null
+    }
   },
-  components: {
-    MonacoEditor
+  watch: {
+    editorContent : function(content) {
+      this.editor.setValue(content)
+      this.editor.clearSelection()
+    }
+  },
+  mounted () {
+    const vm = this
+    this.$nextTick(function () {
+      const editor = ace.edit('editor')
+      editor.getSession().setMode('ace/mode/javascript')
+      editor.setTheme('ace/theme/monokai')
+      editor.setReadOnly(true)
+
+
+
+      vm.editor = editor
+    })
   },
   methods: {
     editorHeight: function() {
@@ -33,3 +42,9 @@ export default {
   }
 }
 </script>
+
+<style type="text/css">
+  #editor {
+    height: 100%;
+  }
+</style>
