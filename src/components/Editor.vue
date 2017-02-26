@@ -3,7 +3,11 @@
     :height="editorHeight()"
     :language="editorLang"
     :code="editorCode"
-    :options="{readOnly : true, fontSize : 18}"
+    :options="{
+      readOnly : true,
+      fontSize : 18,
+      automaticLayout : true
+    }"
     @mounted="editorMounted"
     @codeChange="() => {}"
     >
